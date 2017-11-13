@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh_cn">
+<head>
+    <meta charset="UTF-8">
+    <title>collect</title>
+</head>
+<body>
+<div id="collect_devices_panel" class="easyui-panel" style="width:100%;height:100%;"
+     data-options="fit:true,iconCls:'icon-save',collapsible:true, border:false,collapsed:true">
+    <table id="collect_devices_grid" data-options="fit:true, border: false"></table>
+</div>
+<div id="collect_panel" class="easyui-panel"
+     data-options="fit:true,iconCls:'icon-save',collapsible:true, border:false,collapsed:false">
+    <table id="collect_grid" data-options="fit:true, border: false"></table>
+</div>
+
+<div id="collect_devices_ips" class="easyui-window" title="IP地址" style="width:700px;height:200px;"
+     data-options="iconCls:'icon-save',closed:true,maximizable:false,minimizable:false,collapsible:false,border:'thin'">
+    <table id="collect_devices_ip_grid" class="easyui-datagrid"
+           data-options="fitColumns: true,fit:true,border:false,singleSelect:true">
+        <thead>
+        <tr>
+            <th data-options="field:'address',width:100">IP地址</th>
+            <th data-options="field:'subnet',width:50">子网掩码</th>
+            <th data-options="field:'broadcast',width:100">广播地址</th>
+            <th data-options="field:'destination',width:100">目的地址</th>
+        </tr>
+        </thead>
+    </table>
+</div>
+
+<div id="collect_grid_toolbar">
+    <table cellspacing="0" cellpadding="0">
+        <tbody>
+        <tr>
+            <td>
+                <a id="collect_start" href="#" class="easyui-linkbutton" onclick="collect.startCollect()"
+                   data-options="iconCls:'icon-add', plain:true">开始采集</a>
+            </td>
+            <td>
+                <a id="collect_stop" href="#" class="easyui-linkbutton" onclick="collect.stopCollect()"
+                   data-options="iconCls:'icon-remove', plain:true">停止采集</a>
+            </td>
+            <td>
+                <a id="collect_save" onclick="collect.save()" href="#" class="easyui-linkbutton"
+                   data-options="iconCls:'icon-save', plain:true, disabled:true">保存记录</a>
+            </td>
+            <td>
+                <div class="datagrid-btn-separator"></div>
+            </td>
+            <td>
+                <a id="btn" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-help', plain:true"></a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <table id="collect_grid_status" cellspacing="0"
+           style="width: 100%; background-color: #ece9e9">
+        <tbody>
+        <tr>
+            <td rowspan="3" style="width: 128px;">
+                <div class="custom_link" style="text-align: center;" onclick="layout.openTab(layout.functions.APP)">
+                    <div>
+                        <img id="collect_app_icon" style="width: 64px; height: 64px; border-radius:8px;" src="">
+                    </div>
+                    <div>
+                        <span id="collect_app_name">选择应用</span>
+                    </div>
+                    <div>
+                        <span id="collect_app_version" style="padding-left: 5px;">1.X.X.X</span>
+                        <input style="display: none;" type="text" id="collect_app_id" value="">
+                    </div>
+                </div>
+            </td>
+            <td colspan="3" style="border-bottom: 1px dotted #0f0f0f">
+                <div class="custom_link" style="width:450px; margin: -5px 0px;" onclick="collect.expandDevGrid()">
+                    <span>网卡：</span>
+                    <!--<span style="margin-left: -3px;color: yellow; font-weight: bold; background-color: #1f637b"-->
+                    <!--id="collect_device_selected">网卡名称</span>-->
+                    <input id="collect_device_selected" style="width: 90%" class="easyui-textbox"
+                           data-options="readonly: true"/>
+                    <input style="display: none" id="collect_device_selected_id"/>
+                </div>
+            </td>
+            <td style="border-bottom: 1px dotted #0f0f0f">
+                <div class="custom_link" style="width:450px; margin: -5px 0px;">
+                    <span>过滤策略：</span>
+                    <input id="collect_filter" style="width: 85%" data-options="editable: false"/>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td style="width:150px;">
+                时间：<span
+                    style="text-align:right; display: inline-block; width: 45px;color: yellow; font-weight: bold; background-color: #1f637b"
+                    id="collect_status_time">0</span> 秒
+            </td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td style="width:150px;">
+                <span style="">数量：<span
+                        style="text-align:right; display: inline-block; width: 45px; color: yellow; font-weight: bold; background-color: #1f637b"
+                        id="collect_status_count">0</span> 条记录</span>
+            </td>
+            <td></td>
+            <td></td>
+        </tr>
+        </tbody>
+    </table>
+    <div id="collect_status_msg"
+         style="visibility: hidden; background: url(img/progress.gif) fixed center center no-repeat;background-size: cover;width: 100%; height: 2px;">
+    </div>
+</div>
+
+<script type="text/javascript">
+    collect.init();
+</script>
+</body>
+</html>

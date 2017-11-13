@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh_cn">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <title>应用列表</title>
+    <script src="plugins/jquery-1.9.1.js"></script>
+</head>
+<style>
+    .app * {
+        vertical-align: middle;
+    }
+    body {
+        font-family: "Microsoft YaHei", serif;
+    }
+</style>
+<body>
+<!--<div style="margin: 8px; padding-bottom: 8px; border-bottom: 1px dotted #7237e7">-->
+<!--<div class="app">-->
+<!--<div style="display: inline-block;">-->
+<!--<a target="_blank" href="https://itunes.apple.com/cn/app/gong-yin-ronge-lian/id796870199?mt=8">-->
+<!--<img style="width: 64px; height: 64px; border-radius: 16px;"-->
+<!--src="http://is1.mzstatic.com/image/thumb/Purple111/v4/2c/d9/ee/2cd9eee7-e0c9-19a7-62bf-d2d3d403efd7/source/175x175bb.jpg">-->
+<!--</a>-->
+<!--</div>-->
+<!--<div style="display: inline-block; padding-left: 16px;">-->
+<!--<div><span style="float: left;">农行掌上银行</span><span style="float: right; margin-left: 16px;">1.2.3.4</span>-->
+<!--</div>-->
+<!--<div style="padding-top: 32px; color: #eb9316">2017-04-22 17:00:09 更新</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<div id="apps"></div>
+<script type="text/javascript">
+    $(function () {
+        var app = '<div style="margin: 8px; padding-bottom: 8px; border-bottom: 1px dotted #7237e7"> <div class="app"> <div style="display: inline-block;"> <a target="_blank" href="https://itunes.apple.com/cn/app/gong-yin-ronge-lian/id796870199?mt=8"> <img style="width: 64px; height: 64px; border-radius: 16px;"src="http://is1.mzstatic.com/image/thumb/Purple111/v4/2c/d9/ee/2cd9eee7-e0c9-19a7-62bf-d2d3d403efd7/source/175x175bb.jpg"> </a> </div> <div style="display: inline-block; padding-left: 16px;"> <div><span style="float: left;">农行掌上银行</span><span style="float: right; margin-left: 16px;">1.2.3.4</span></div> <div style="padding-top: 32px; color: #eb9316">2017-04-22 17:00:09 更新</div> </div> </div> </div>';
+
+        $.ajax({
+            method: 'post',
+            url: 'service/management/app/list',
+            success: function (data) {
+                if (data.success) {
+                    data.data.forEach(function (d) {
+                        $('#apps').append('<div style="margin: 8px; padding-bottom: 8px; border-bottom: 1px dotted #7237e7"> ' +
+                            '<div class="app"> <div style="display: inline-block;"> ' +
+                            '<a target="_blank" href="' + d.infoUrl + '"> ' +
+                            '<img style="width: 64px; height: 64px; border: 1px solid #e8e8e8; border-radius: 16px;"src="' + d.iconUrl + '"> </a> </div> ' +
+                            '<div style="display: inline-block; padding-left: 16px;"> ' +
+                            '<div><span>' + d.name + '</span>' +
+                            '<span style="margin-left: 16px; color: #00bbee;">' + d.version + '</span></div> ' +
+                            '<div style="padding-top: 16px; color: #eb9316">' + d.versionTime + '</div> </div> </div> </div>');
+                    });
+                }
+            }
+        });
+    });
+</script>
+</body>
+</html>

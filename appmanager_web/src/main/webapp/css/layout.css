@@ -1,0 +1,41 @@
+.menu_button {
+    width: 100%;
+    margin-left: -1px;
+    text-align: left;
+}
+
+span.grid_row_btn {
+    cursor: pointer;
+    display: inline-block;
+    width: 16px;
+}
+
+.form_label {
+    display: inline-block;
+    width: 48px;
+}
+
+.form_window {
+    padding: 18px;
+}
+
+form input {
+    width: 172px;
+}
+
+form select {
+    width: 176px;
+}
+body {
+    font-family: "Microsoft YaHei", serif;
+}
+
+.custom_link {
+    cursor: pointer;
+    padding: 5px;
+}
+.custom_link:hover {
+    border: 1px solid #2aabd2;
+    padding: 4px;
+    border-radius: 2px;
+}

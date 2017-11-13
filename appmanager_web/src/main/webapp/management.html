@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ZH_CN">
+<head>
+    <meta charset="UTF-8">
+    <title>APP管理</title>
+    <script src="js/jquery-1.9.1.js"></script>
+    <script src="js/dist/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="js/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="modules/bootstrap_table/bootstrap-table.css">
+    <script src="modules/bootstrap_table/bootstrap-table.js"></script>
+
+    <script type="text/javascript">
+        function totalTextFormatter(data) {
+            return 'Total';
+        }
+
+        function initGrid() {
+            $('#agency_list').bootstrapTable({
+                columns: [[
+                    {
+                        field: 'state',
+                        checkbox: true,
+                        align: 'center',
+                        valign: 'middle'
+                    }, {
+                        title: 'ID',
+                        field: 'id',
+                        align: 'center',
+                        valign: 'middle',
+                        sortable: true,
+                        footerFormatter: totalTextFormatter
+                    }, {
+                        title: '名称',
+                        field: 'name',
+                        align: 'center'
+                    }
+                ]],
+                url: 'http://localhost/monitor/manage/list'
+//                ajax: function () {
+//
+//                }
+            });
+        }
+
+        $(function () {
+            initGrid();
+        });
+    </script>
+</head>
+<body>
+<!-- Nav tabs -->
+<ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#agency" role="tab" data-toggle="tab">银行</a></li>
+    <li role="presentation"><a href="#app" role="tab" data-toggle="tab">应用</a></li>
+    <li role="presentation"><a href="#app" role="tab" data-toggle="tab">子版本</a></li>
+</ul>
+
+<!-- Tab panes -->
+<div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="agency">
+        <div id="panel_agency" class="panel panel-default collapse in my-panel-intab">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="btn-group my-btn-group">
+                            <button id="monitor_start" onclick="monitorStart()" type="button" class="btn btn-default">添加
+                            </button>
+                            <button id="monitor_stop" onclick="monitorStop()" type="button"
+                                    class="btn btn-default">编辑
+                            </button>
+                            <button id="monitor_download_save" onclick="downloadRecord()" type="button"
+                                    class="btn btn-default disabled">删除
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <table id="agency_list"></table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="app">2</div>
+    <div role="tabpanel" class="tab-pane" id="subversion">3</div>
+</div>
+
+</body>
+</html>
